@@ -1,0 +1,24 @@
+.btn{
+    margin-right: 20px;
+}
+footer{
+    position: relative;
+    margin-bottom: 0 !important;
+    background-color: black;
+}
+/* address , .fw-normal{
+    color: antiquewhite;
+} */
+footer , .navbar{
+ background-color: #FFDFDF !important;
+}
+.nav-link{
+    font-family: cursive;
+    font-weight: bolder;
+    font-size: 24px;
+    color: black;
+}
+.nav-link:active , .nav-link:hover{
+    color: #2d67ff;
+    text-decoration: underline;
+}
