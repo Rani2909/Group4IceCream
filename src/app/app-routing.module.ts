@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { AdminComponent } from './admin/admin.component';
+import { CartComponent } from './cart/cart.component';
 
 const routes: Routes = [
   { path: 'flavours', component: FlavoursComponent },
@@ -17,10 +18,9 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'drinks', component: DrinksComponent },
-  { path: 'specialMenu', component: SpecialMenuComponent }
-
-
-
+  { path: 'specialMenu', component: SpecialMenuComponent },
+  { path: 'cart', component: CartComponent },
+  { path: '', component: HomePageComponent }
 ];
 
 @NgModule({

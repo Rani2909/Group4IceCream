@@ -6,10 +6,8 @@ import {Component} from '@angular/core';
     styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-    firstName:string = '';
-    lastName:string = '';
-    mobile:string = '';
-    email:string = '';
+    userName:string = '';
+    password:string = '';
 
     login() {
         // Perform login using the username and password

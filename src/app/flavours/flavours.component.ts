@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-flavours',
@@ -10,6 +11,7 @@ export class FlavoursComponent {
   selectedSize: string = ''; // To store the selected size
   selectedToppings: any = []; // To store the selected toppings
   additionalRequest: string = ''; // To store additional comments
+  selectedItem: string = '';
   constructor() {
     this.selectedToppings = []; // Initialize selectedToppings as an empty array
   }
@@ -117,6 +119,7 @@ export class FlavoursComponent {
   addToCart() {
 
     this.iceCreamDetail = {
+      item: this.selectedItem,
       type: this.selectedType,
       size: this.selectedSize,
       toppings: this.selectedToppings,
@@ -128,4 +131,8 @@ export class FlavoursComponent {
   console.log(this.cartArray)
 
   }
+  openPopup(item: string) {
+    this.selectedItem = item;
+  }
+  
 }

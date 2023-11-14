@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminComponent } from './admin/admin.component';
 import { DrinksComponent } from './drinks/drinks.component';
 import { SpecialMenuComponent } from './special-menu/special-menu.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { SpecialMenuComponent } from './special-menu/special-menu.component';
     RegisterComponent,
     AdminComponent,
     DrinksComponent,
-    SpecialMenuComponent
+    SpecialMenuComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
