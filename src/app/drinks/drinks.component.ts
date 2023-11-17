@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { CommonserviceService } from '../commonservice.service';
 
 @Component({
   selector: 'app-drinks',
@@ -75,4 +76,5 @@ export class DrinksComponent {
     },
   
   ]
+  constructor(private commonservice: CommonserviceService) {}
 }

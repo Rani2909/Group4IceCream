@@ -11,6 +11,8 @@ import { AdminComponent } from './admin/admin.component';
 import { DrinksComponent } from './drinks/drinks.component';
 import { SpecialMenuComponent } from './special-menu/special-menu.component';
 import { CartComponent } from './cart/cart.component';
+import { CommonserviceService } from './commonservice.service';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,14 +24,15 @@ import { CartComponent } from './cart/cart.component';
     AdminComponent,
     DrinksComponent,
     SpecialMenuComponent,
-    CartComponent
+    CartComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [CommonserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

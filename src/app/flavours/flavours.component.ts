@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CartComponent } from '../cart/cart.component';
+import { CommonserviceService } from '../commonservice.service';
 
 @Component({
   selector: 'app-flavours',
@@ -12,7 +13,9 @@ export class FlavoursComponent {
   selectedToppings: any = []; // To store the selected toppings
   additionalRequest: string = ''; // To store additional comments
   selectedItem: string = '';
-  constructor() {
+  selectedFlavor: any;
+
+  constructor(private commonservice: CommonserviceService) {
     this.selectedToppings = []; // Initialize selectedToppings as an empty array
   }
   toppings: any[] = [
@@ -33,7 +36,8 @@ export class FlavoursComponent {
       desc: "Lorem ipsum.....",
       additionalRequest: "",
       size: "",
-      displayPic: "vanilla.jpg"
+      displayPic: "vanilla.jpg",
+      price: 3.99
     },
     {
       id: "02",
@@ -41,7 +45,8 @@ export class FlavoursComponent {
       desc: "Lorem ipsum.....",
       additionalRequest: "",
       size: "",
-      displayPic: "strawberry.jpg"
+      displayPic: "strawberry.jpg",
+      price: 4.48
     },
     {
       id: "03",
@@ -49,7 +54,8 @@ export class FlavoursComponent {
       desc: "Lorem ipsum.....",
       additionalRequest: "",
       size: "",
-      displayPic: "chocolate.jpg"
+      displayPic: "chocolate.jpg",
+      price: 5.99
     },
     {
       id: "04",
@@ -57,7 +63,8 @@ export class FlavoursComponent {
       desc: "Lorem ipsum.....",
       additionalRequest: "",
       size: "",
-      displayPic: "pista.jpg"
+      displayPic: "pista.jpg",
+      price: 4.99
     },
     {
       id: "05",
@@ -65,7 +72,8 @@ export class FlavoursComponent {
       desc: "Lorem ipsum.....",
       additionalRequest: "",
       size: "",
-      displayPic: "Butter Pecan.jpeg"
+      displayPic: "Butter Pecan.jpeg",
+      price: 6.59
     },
     {
       id: "06",
@@ -73,7 +81,8 @@ export class FlavoursComponent {
       desc: "Lorem ipsum.....",
       additionalRequest: "",
       size: "",
-      displayPic: "neapolitan.jpg"
+      displayPic: "neapolitan.jpg",
+      price: 3.99
     },
 
     {
@@ -82,7 +91,8 @@ export class FlavoursComponent {
       desc: "Lorem ipsum.....",
       additionalRequest: "",
       size: "",
-      displayPic: "butterscotch.jpg"
+      displayPic: "butterscotch.jpg",
+      price: 6.99
     },
 
     {
@@ -91,19 +101,24 @@ export class FlavoursComponent {
       desc: "Lorem ipsum.....",
       additionalRequest: "",
       size: "",
-      displayPic: "Raspberry.jpg"
+      displayPic: "Raspberry.jpg",
+      price: 7.99
     },
 
   ]
-  counterValue: number = 0;
+  counterValue: number = 1;
+  priceVal: number = 0;
 
   increment() {
     this.counterValue++;
+    this.priceVal = this.originalPrice * this.counterValue
   }
 
   decrement() {
     if (this.counterValue > 0) {
       this.counterValue--;
+      this.priceVal = (this.originalPrice * this.counterValue)
+
     }
   }
   updateSelectedToppings(id: any, name: any) {
@@ -114,25 +129,55 @@ export class FlavoursComponent {
     })
     console.log(this.selectedToppings)
   }
-  cartArray: any = [];
-  iceCreamDetail :any ={}
   addToCart() {
-
-    this.iceCreamDetail = {
+    const iceCreamDetail = {
       item: this.selectedItem,
       type: this.selectedType,
       size: this.selectedSize,
       toppings: this.selectedToppings,
       customerComments: this.additionalRequest,
-      count: this.counterValue
-    }
-  this.cartArray.push(this.iceCreamDetail)
+      count: this.counterValue,
+      price: this.priceVal,
+      displayPic: this.selectedFlavor.displayPic 
+    };
 
-  console.log(this.cartArray)
+    console.log('Ice Cream Detail:', iceCreamDetail);
+    this.commonservice.addToCart(iceCreamDetail);
 
+    this.clearForm();
+
+    const modalElement = document.getElementById('icecreamDetailModal');
+
+    //if (modalElement) {
+    ///modalElement.style.display = 'none';
+    //} 
+    //else {
+    //console.error("Modal element with ID 'icecreamDetailModal' not found");
+    //}
   }
+
+  getFlavorPrice(selectedFlavor: any): number {
+    return selectedFlavor ? parseFloat(selectedFlavor.price) : 0;
+  }
+  originalPrice: number = 0;
+
   openPopup(item: string) {
     this.selectedItem = item;
+    this.selectedFlavor = this.flavoursArray.find(flavor => flavor.fName === item);
+    const indx = this.flavoursArray.findIndex(x => x.fName === item)
+    this.originalPrice = this.flavoursArray[indx].price;
+    this.priceVal = this.originalPrice;
+    this.selectedFlavor.displayPic = `/assets/images/${this.flavoursArray[indx].displayPic}`;
+    console.log('Flavor Display Pic:', this.selectedFlavor.displayPic);
+    console.log('Price Value:', this.priceVal);
   }
-  
+  clearForm() {
+    this.selectedType = '';
+    this.selectedSize = '';
+    this.selectedToppings = [];
+    this.additionalRequest = '';
+    this.selectedItem = '';
+    this.counterValue = 1;
+  }
+
 }

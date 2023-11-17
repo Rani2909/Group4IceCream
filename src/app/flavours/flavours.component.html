@@ -2,7 +2,8 @@
 <div class="container">
   <div class="row mx-0">
     <div class="col-3 mb-3" *ngFor="let item of flavoursArray">
-      <div class="card text-center" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal" (click)="openPopup(item.fName)">
+      <div class="card text-center" data-bs-toggle="modal" data-bs-target="#icecreamDetailModal"
+        (click)="openPopup(item.fName)">
         <img class="img" src="assets/images/{{item.displayPic}}" alt="iceCream image">
         <span class="iceName p-3">{{item.fName}}</span>
       </div>
@@ -20,6 +21,8 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <!-- Display the price -->
+          <p *ngIf="selectedFlavor">Price: ${{priceVal | number:'1.2-2'}}</p>
           <!-- Type -->
           <div class="d-grid mb-3">
             <span class="fw-bold">Type</span>
@@ -64,9 +67,8 @@
               <!-- Replace these checkboxes with your actual toppings -->
               <div class="w-50">
                 <div class="form-check" *ngFor="let topping of toppings">
-                  <input class="form-check-input" type="checkbox" [id]="topping.id" value="topping.name"
-                    [(ngModel)]="topping.isSelected" name="topping.name"
-                    (change)="updateSelectedToppings(topping.id , topping.name)">
+                  <input class="form-check-input" type="checkbox" [id]="topping.id" [(ngModel)]="topping.isSelected"
+                    [name]="topping.name" (change)="updateSelectedToppings(topping.id , topping.name)">
                   <label class="form-check-label" for="topping.name">{{ topping.name }}</label>
                 </div>
               </div>
