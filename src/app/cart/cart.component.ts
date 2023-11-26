@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonserviceService } from '../commonservice.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
@@ -9,30 +8,33 @@ import { CommonserviceService } from '../commonservice.service';
 export class CartComponent {
   cartItems: any[] = [];
 
-  constructor(private commonservice: CommonserviceService) { }
+  constructor() {}
 
-  ngOnInit(): void {
-    this.getCartItems();
+  addToCart(item: any) {
+    // Check if the item is already in the cart
+    const existingItemIndex = this.cartItems.findIndex(cartItem => cartItem.id === item.id);
+
+    if (existingItemIndex !== -1) {
+      // If the item is already in the cart, increase its quantity
+      this.cartItems[existingItemIndex].quantity++;
+    } else {
+      // If the item is not in the cart, add it with a quantity of 1
+      this.cartItems.push({ ...item, quantity: 1 });
+    }
   }
 
-  getCartItems(): void {
-    this.cartItems = this.commonservice.getCartItems();
-    console.log('Cart Items:', this.cartItems);
+  removeFromCart(index: number) {
+    // Remove the item from the cart based on its index
+    this.cartItems.splice(index, 1);
   }
 
-  removeItem(index: number): void {
-    this.commonservice.removeFromCart(index);
-    console.log('After removeItem:', this.commonservice.getCartItems());
-    this.getCartItems();
+  getTotal(): number {
+    // Calculate the total cost of items in the cart
+    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
-  clearCart(): void {
-    this.commonservice.clearCart();
-    console.log('After clearCart:', this.commonservice.getCartItems());
-    this.getCartItems();
-  }
-
-  getTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + item.price, 0);
+  clearCart() {
+    // Clear all items from the cart
+    this.cartItems = [];
   }
 }
