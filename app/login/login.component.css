@@ -1,0 +1,11 @@
+.row{
+    height: 450px;
+}
+.fa-circle-xmark{
+    float: inline-end;
+    top: -25px;
+    position: relative;
+    left: -9px;
+    z-index: 9;
+    font-size: 25px;
+}

@@ -1,0 +1,68 @@
+<div class="row mt-5" *ngIf="isLogin">
+    <div class="col-4 offset-4">
+        <i class="fa-regular fa-circle-xmark fa-beat" (click)="backTolanding()"></i>
+        <div class="card">
+            <div class="card-body">
+               
+                <h5 class="card-title">User Login</h5>
+                <form #loginForm="ngForm" (ngSubmit)="login()">
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control" id="firstName" name="firstName" [(ngModel)]="firstName"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control" id="lastName" name="lastName" [(ngModel)]="lastName"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="mobile" class="form-label">Mobile</label>
+                        <input type="tel" class="form-control" id="mobile" name="mobile" [(ngModel)]="mobile"
+                            required>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary mr-3">Log In</button>
+                        <button (click)="isRegister=true;isLogin=false" class="btn btn-secondary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5" *ngIf="isRegister">
+    <div class="col-4 offset-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Registration Form</h5>
+                <form #registrationForm="ngForm" (ngSubmit)="register(registrationForm)">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">User Name</label>
+                        <input type="text" class="form-control" id="username" name="username" [(ngModel)]="username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailRegister" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="emailRegister" name="emailRegister" [(ngModel)]="emailRegister" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" [(ngModel)]="password" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirmpassword" class="form-label">Confirm Password</label>
+                        <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" [(ngModel)]="confirmPassword" required>
+                    </div>
+                    <div class="mb-3">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
