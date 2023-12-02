@@ -15,7 +15,6 @@ import { CommonserviceService } from './commonservice.service';
 import { ProfileComponent } from './user/profile/profile.component';
 import { UserComponent } from './user/user.component';
 import { OrderComponent } from './user/order/order.component';
-import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-order-details.component';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { AdminOrderDetailsComponent } from './admin/admin-order-details/admin-or
     CartComponent,
     ProfileComponent,
     UserComponent,
-    OrderComponent,
-    AdminOrderDetailsComponent
+    OrderComponent
   ],
   imports: [
     BrowserModule,

@@ -5,9 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class CommonserviceService {
   cartItems: any[] = JSON.parse(localStorage.getItem('cartItems') || '[]');
-  // cartItemsForDrinks: any[] = JSON.parse(localStorage.getItem('cartItemsForDrinks') || '[]');
-  // cartItemsForSplMenu: any[] = JSON.parse(localStorage.getItem('cartItemsForSplMenu') || '[]');
-
 
   addToCart(item: any) {
     console.log('Before adding to cart:', this.cartItems);

@@ -18,11 +18,7 @@
           <tr *ngFor="let item of cartItems; let i = index">
             <td scope="row" class="text-center">{{i + 1}}</td>
             <td>{{ item.flavour }} - {{item.size}} - {{item.type}}</td>
-            <td class="text-center">
-            <span *ngIf="item.productType == 'flavours' || item.productType == 'drinks' ">{{ item.toppings.length }}</span>  
-            <span *ngIf="item.productType == 'specialMenu'">NA</span>  
-           
-          </td>
+            <td class="text-center">{{ item.toppings.length }}</td>
             <td class="text-center">
               <div class="input-group m-0 w-75">
                 <button class="btn btn-outline-secondary btn-sm" type="button" (click)="decrement(item)" id="button-addon1">

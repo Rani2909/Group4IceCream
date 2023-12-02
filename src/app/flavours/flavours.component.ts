@@ -132,7 +132,6 @@ export class FlavoursComponent {
 
   public addToCart() {
     const iceCreamDetail = {
-      productType: "flavours",
       flavour: this.selectedFlavor.fName,
       type: this.selectedType,
       size: this.selectedSize,
